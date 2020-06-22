@@ -10,9 +10,11 @@
 #' @return data
 #' @export
 #'
+#' @import RCurl
 #' @import rvest
 #' @import xml2
 #' @import magrittr
+#' @importFrom assertthat assert_that
 #'
 #' @examples
 #' app_url <- "https://play.google.com/store/apps/details?id=com.dinaga.photosecret"
@@ -21,8 +23,26 @@
 
 getDataForTag <- function(app_url, html_tag, html_attribute, html_attribute_value) {
 
+  # Checks
+  assert_that(
+    # app_url need to be a character
+    is.character(app_url),
+
+    # app_url must be a vaild url
+    RCurl::url.exists(app_url),
+
+    # app_url must start with the string "https://play.google.com/store/apps/details?id="
+    startsWith(app_url, "https://play.google.com/store/apps/details?id="),
+
+    # html_tag, html_attribute, and html_attribute_value are characters
+    is.character(html_tag),
+    is.character(html_attribute),
+    is.character(html_attribute_value))
+
+  # Combine html_tag, html_attribute, and html_attribute value into properly formatted search text
   search_text <- paste0("//", html_tag, "[contains(@", html_attribute, ",'", html_attribute_value, "')]")
 
+  # Scrape the app page
   data <- app_url %>%
     read_html() %>%
     html_nodes('body') %>%

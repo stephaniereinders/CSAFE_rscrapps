@@ -14,5 +14,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Imports: 
   magrittr, 
+  RCurl,
   rvest, 
-  xml2
+  xml2,
+  assertthat
+Suggests: 
+    testthat
