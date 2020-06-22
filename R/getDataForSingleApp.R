@@ -1,4 +1,29 @@
+#' getDataForSingleApp
+#'
+#' Scrape an app page in the Google Play Store for information associated with a number of html tags.
+#'
+#' @param app_url The url for an app page in the Google Play Store
+#'
+#' @return data
+#' @export
+#'
+#' @importFrom assertthat assert_that
+#'
+#' @examples
+#' app_url <- "https://play.google.com/store/apps/details?id=com.dinaga.photosecret"
+#' getDataForSingleApp(app_url)
+
 getDataForSingleApp <- function(app_url){
+
+  # Checks
+  assert_that(
+    # app_url needs to be a character
+    is.character(app_url),
+
+    # app_url must start with the string "https://play.google.com/store/apps/details?id="
+    startsWith(app_url, "https://play.google.com/store/apps/details?id=")
+    )
+
 
   # get developer and category
   temp <- getDataForTag(app_url, "a", "class", "hrTbp R8zArc")

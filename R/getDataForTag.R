@@ -33,7 +33,8 @@ getDataForTag <- function(app_url, html_tag, html_attribute, html_attribute_valu
     # html_tag, html_attribute, and html_attribute_value are characters
     is.character(html_tag),
     is.character(html_attribute),
-    is.character(html_attribute_value))
+    is.character(html_attribute_value)
+    )
 
   # Combine html_tag, html_attribute, and html_attribute value into properly formatted search text
   search_text <- paste0("//", html_tag, "[contains(@", html_attribute, ",'", html_attribute_value, "')]")
