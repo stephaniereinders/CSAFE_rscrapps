@@ -1,14 +1,13 @@
 Package: myScrapingPackage
-Title: What the Package Does (One Line, Title Case)
+Title: Scrape the Google Play Store for App Information
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Stephanie",
            family = "Reinders",
            role = c("aut", "cre"),
            email = "srein@iastate.edu")
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+Description: This package allows you to search the Google Play Store for apps and then scrape information from each of the apps' papges.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
