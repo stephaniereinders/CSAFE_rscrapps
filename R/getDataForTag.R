@@ -10,7 +10,6 @@
 #' @return data
 #' @export
 #'
-#' @import RCurl
 #' @import rvest
 #' @import xml2
 #' @import magrittr
