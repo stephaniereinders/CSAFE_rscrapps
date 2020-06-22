@@ -25,11 +25,8 @@ getDataForTag <- function(app_url, html_tag, html_attribute, html_attribute_valu
 
   # Checks
   assert_that(
-    # app_url need to be a character
+    # app_url needs to be a character
     is.character(app_url),
-
-    # app_url must be a vaild url
-    RCurl::url.exists(app_url),
 
     # app_url must start with the string "https://play.google.com/store/apps/details?id="
     startsWith(app_url, "https://play.google.com/store/apps/details?id="),
