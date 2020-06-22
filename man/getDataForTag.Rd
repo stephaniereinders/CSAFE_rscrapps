@@ -4,10 +4,10 @@
 \alias{getDataForTag}
 \title{getDataForTag}
 \usage{
-getDataForTag(webpage, html_tag, html_attribute, html_attribute_value)
+getDataForTag(url, html_tag, html_attribute, html_attribute_value)
 }
 \arguments{
-\item{webpage}{The html for an app page in the Google Play Store}
+\item{url}{The url for an app page in the Google Play Store}
 
 \item{html_tag}{An html tag. E.g. "div"}
 
@@ -22,7 +22,6 @@ getDataForTag(webpage, html_tag, html_attribute, html_attribute_value)
 Scrape an app page in the Google Play Store for information associated with a specific html tag.
 }
 \examples{
-webpage <- read_html("https://play.google.com/store/apps/details?id=com.dinaga.photosecret")
-getDataForTag(webpage,"div","class","KmO8jd")
-getDataForTag(webpage,"a","class","hrTbp R8zArc")
+getDataForTag("https://play.google.com/store/apps/details?id=com.dinaga.photosecret","div","class","KmO8jd")
+getDataForTag("https://play.google.com/store/apps/details?id=com.dinaga.photosecret","a","class","hrTbp R8zArc")
 }
