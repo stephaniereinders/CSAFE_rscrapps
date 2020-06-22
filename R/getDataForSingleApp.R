@@ -24,7 +24,6 @@ getDataForSingleApp <- function(app_url){
     startsWith(app_url, "https://play.google.com/store/apps/details?id=")
     )
 
-
   # get developer and category
   temp <- getDataForTag(app_url, "a", "class", "hrTbp R8zArc")
   developer <- temp[1]
@@ -51,22 +50,40 @@ getDataForSingleApp <- function(app_url){
   if (length(num_rating)==0){
     num_rating <- as.numeric(0)
   } else {
-    num_rating <- as.numeric(gsub(" total","",num_rating))
+    num_rating <- gsub(" total", "", num_rating)
+    num_rating <- as.numeric(gsub(",", "", num_rating))
   }
 
   # Get data from additional information section of page
   temp <- getDataForTag(app_url, "span", "class", "htlgb")
+  if (length(temp)==22){
   updated <- temp[1]
   size <- temp[3]
   installs <- temp[5]
   current_version <- temp[7]
   requires_Android <- temp[9]
   content_rating <- gsub("Learn More","",temp[11])
-  offered_by <- temp[17]
-  developer_contact <- temp[19]
+  in_app_products <- temp[13]
+  permissions <- temp[15]
+  report <- temp[17]
+  offered_by <- temp[19]
+  developer_contact <- temp[21]
+  } else {
+    updated <- temp[1]
+    size <- temp[3]
+    installs <- temp[5]
+    current_version <- temp[7]
+    requires_Android <- temp[9]
+    content_rating <- gsub("Learn More","",temp[11])
+    in_app_products <- "NA"
+    permissions <- temp[13]
+    report <- temp[15]
+    offered_by <- temp[17]
+    developer_contact <- temp[19]
+  }
 
   # Put in dataframe
-  data <- data.frame(developer, category, audience, description, rating, num_rating, updated, size, installs, current_version, requires_Android, content_rating, offered_by, developer_contact, stringsAsFactors=FALSE)
+  data <- data.frame(developer, category, audience, description, rating, num_rating, updated, size, installs, current_version, requires_Android, content_rating, in_app_products, offered_by, developer_contact, stringsAsFactors=FALSE)
 
   return(data)
 
