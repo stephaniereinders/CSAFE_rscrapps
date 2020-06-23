@@ -1,6 +1,7 @@
 #' Scrape Google Play Store search results
 #'
 #' @param search_term getDataForApps will search the Google Play Store for apps using this search term
+#' @param num_apps number of apps to return data for
 #' @import rvest
 #' @import xml2
 #' @importFrom purrr map_dfr
@@ -10,8 +11,9 @@
 #'
 #' @examples
 #' data <- getDataForApps("steganography")
+#' data <- getDataForApps("hidden", num_apps=1)
 
-getDataForApps <- function(search_term){
+getDataForApps <- function(search_term, num_apps=2){
 
   # Checks
   assert_that(
@@ -19,7 +21,10 @@ getDataForApps <- function(search_term){
     is.character(search_term),
 
     # search_term needs to be non-empty
-    search_term != ""
+    (search_term != ""),
+
+    # num_apps needs to be a positive integer or "all"
+    ((num_apps %% 1 == 0 & num_apps > 0) | tolower(num_apps) == "all" )
   )
 
   # replace any spaces in search_term with %20 to match GPS's formatting
@@ -39,6 +44,10 @@ getDataForApps <- function(search_term){
 
   # convert to list
   links <- as.list(links)
+
+  # select first num_apps from the list
+  if (is.numeric(num_apps) & (num_apps  < length(links))){
+    links <- links[1:num_apps]}
 
   # add "https://play.google.com" to begining of each link
   links <- lapply(links, function (x) (paste0("https://play.google.com", x)))
