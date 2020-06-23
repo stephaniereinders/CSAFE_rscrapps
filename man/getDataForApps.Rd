@@ -17,5 +17,4 @@ Scrape Google Play Store search results
 }
 \examples{
 getDataForApps("steganography")
-getDataForApps("hidden")
 }
