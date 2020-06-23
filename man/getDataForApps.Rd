@@ -4,10 +4,12 @@
 \alias{getDataForApps}
 \title{Scrape Google Play Store search results}
 \usage{
-getDataForApps(search_term)
+getDataForApps(search_term, num_apps = 2)
 }
 \arguments{
 \item{search_term}{getDataForApps will search the Google Play Store for apps using this search term}
+
+\item{num_apps}{number of apps to return data for}
 }
 \value{
 data
@@ -17,4 +19,5 @@ Scrape Google Play Store search results
 }
 \examples{
 data <- getDataForApps("steganography")
+data <- getDataForApps("hidden", num_apps=1)
 }
