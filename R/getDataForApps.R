@@ -10,7 +10,6 @@
 #'
 #' @examples
 #' getDataForApps("steganography")
-#' getDataForApps("hidden")
 
 getDataForApps <- function(search_term){
 
