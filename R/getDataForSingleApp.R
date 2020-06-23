@@ -24,6 +24,9 @@ getDataForSingleApp <- function(app_url){
     startsWith(app_url, "https://play.google.com/store/apps/details?id=")
     )
 
+  # get app name
+  name <- getDataForTag(app_url,"h1","class","AHFaub")
+
   # get developer and category
   temp <- getDataForTag(app_url, "a", "class", "hrTbp R8zArc")
   developer <- temp[1]
@@ -83,7 +86,7 @@ getDataForSingleApp <- function(app_url){
   }
 
   # Put in dataframe
-  data <- data.frame(developer, category, audience, description, rating, num_rating, updated, size, installs, current_version, requires_Android, content_rating, in_app_products, offered_by, developer_contact, stringsAsFactors=FALSE)
+  data <- data.frame(name, developer, category, audience, description, rating, num_rating, updated, size, installs, current_version, requires_Android, content_rating, in_app_products, offered_by, developer_contact, stringsAsFactors=FALSE)
 
   return(data)
 
