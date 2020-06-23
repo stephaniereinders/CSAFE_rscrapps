@@ -9,9 +9,21 @@
 #' @return data
 #'
 #' @examples
-#' getDataForApps("steganography")
+#' data <- getDataForApps("steganography")
 
 getDataForApps <- function(search_term){
+
+  # Checks
+  assert_that(
+    # search_term needs to be a character
+    is.character(search_term),
+
+    # search_term needs to be non-empty
+    search_term != ""
+  )
+
+  # replace any spaces in search_term with %20 to match GPS's formatting
+  search_term <- gsub(" ", "%20", search_term)
 
   # get url for search_term
   search_url <- paste0("https://play.google.com/store/search?q=", search_term,"&c=apps")
