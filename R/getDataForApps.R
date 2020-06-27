@@ -24,7 +24,12 @@ getDataForApps <- function(search_term, num_apps=2){
     (search_term != ""),
 
     # num_apps needs to be a positive integer or "all"
-    ((num_apps %% 1 == 0 & num_apps > 0) | tolower(num_apps) == "all" )
+    if (is.numeric(num_apps)){
+      num_apps %% 1 == 0 & num_apps > 0
+    } else {
+      tolower(num_apps) == "all"
+    }
+
   )
 
   # replace any spaces in search_term with %20 to match GPS's formatting
