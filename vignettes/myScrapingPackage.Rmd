@@ -1,0 +1,70 @@
+---
+title: "myScrapingPackage"
+author: "Stephanie Reinders"
+date: "6/25/2020"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{myScrapingPackage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(myScrapingPackage)
+```
+
+This package was created so that my research group would have a simple way to gather information from the Google Play Store on available apps. The function getDataForApps allows the user to enter a search term. Then the function scrapes all of the apps that appear in the search resuls for that term on the Google Play Store. The function getDataForSingleApp scrapes the app page for a single app on the Google Play Store.
+
+---
+
+## Scraping search results with getDataForApps
+
+The function getDataForApps searches the Google Play Store for the input search term, then scrapes the app pages for the apps in the search results. This function runs the function getDataForSingleApp for the apps in the search results.
+
+The inputs to getDataForApps are a search term, which can be a single word or multiple words, and the number of apps to scrape. The number of apps to scape can be "all" or a positive integer. If the number of apps to scrape num_apps is less than the total number of apps in the search results, the first num_apps in the search results will be scraped. The default number of apps to search is 2. 
+
+```{r}
+data <- getDataForApps("steganography", "all")
+head(data)
+
+data <- getDataForApps("hidden data", 3)
+head(data)
+```
+
+
+## Scraping a single app page with getDataForSingleApp
+
+The function getDataForSingleApp scapes an app page on the Google Play Store. The input is the url of an app page on the Google Play Store to the function. The function runs getDataForTag to scrape information for specified fields on the app page. Some of the data returned by getDataForTag is messy, so getDataForSingleApp cleans it up if necessary.
+
+```{r}
+app_url <- "https://play.google.com/store/apps/details?id=com.disney.disneyplus"
+getDataForSingleApp(app_url)
+```
+
+
+## Scape an app page for a specific html tag with getDataForTag
+
+The function getDataForTag scrapes a single Google Play Store app page for a single html tag. 
+
+The inputs to getDataForTag are app_url, the url for a Google Play Store app page, html_tag, html_attribute, and html_attribute_value. The inputs html_tag, html_attribute, and html_attribute_value specify the specific field to scrape. For example, to scrape the descripition field html_tag = "div", html_attribute = "jsname", and html_attribute_value = "snebd". 
+
+```{r}
+app_url <- "https://play.google.com/store/apps/details?id=com.disney.disneyplus"
+
+description <- getDataForTag(app_url, "div", "jsname", "sngebd")
+description
+
+audience <- getDataForTag(app_url, "div", "class", "KmO8jd")
+audience
+```
+
+
+
+
