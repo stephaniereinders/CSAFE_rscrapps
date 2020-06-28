@@ -1,10 +1,10 @@
 ---
-title: "myScrapingPackage"
+title: "rscrapps"
 author: "Stephanie Reinders"
 date: "6/25/2020"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{myScrapingPackage}
+  %\VignetteIndexEntry{rscrapps}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(myScrapingPackage)
+library(rscrapps)
 ```
 
 This package was created so that my research group would have a simple way to gather information from the Google Play Store on available apps. The function getDataForApps allows the user to enter a search term. Then the function scrapes all of the apps that appear in the search resuls for that term on the Google Play Store. The function getDataForSingleApp scrapes the app page for a single app on the Google Play Store.

@@ -1,4 +1,4 @@
 library(testthat)
-library(myScrapingPackage)
+library(rscrapps)
 
-test_check("myScrapingPackage")
+test_check("rscrapps")
