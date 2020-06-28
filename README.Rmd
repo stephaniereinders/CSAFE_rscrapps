@@ -18,43 +18,44 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of rscrapps is to allow
+The main purpose of rscrapps is to allow a user to easily search the Google Play Store for apps and scrape information from those apps' pages.
 
 ## Installation
 
-You can install the released version of rscrapps from [CRAN](https://CRAN.R-project.org) with:
+<!-- You can install the released version of rscrapps from [CRAN](https://CRAN.R-project.org) with: -->
 
-``` r
-install.packages("rscrapps")
-```
+<!-- ``` r -->
+<!-- install.packages("rscrapps") -->
+<!-- ``` -->
 
-And the development version from [GitHub](https://github.com/) with:
+You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("stephaniereinders/rscrapps")
 ```
+
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Suppose you want to gather information on steganography apps listed on the Google Play Store. You can run the function getDataForApps with inputs search_term = "steganography" and num_apps = 5. The function will first search the Google Play Store for apps using steganography as the search term. Then the function will scrape the Google Play Store pages of the first 5 apps listed in the search results. If you want to scrape the app pages of all of the apps in the search results, you can run the function with num_apps = "all" but be forwarned that the function can take a while to run depending on the number of apps in the search results.  
 
 ```{r example}
 library(rscrapps)
-## basic example code
+
+data <- getDataForApps(search_term = "steganography", num_apps =  5)
+
+data
+
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+If you want to scrape the Google Play Store app page of a specific app, you can use the function getDataForSingleApp. The input is the url to the app's page on the Google Play Store.
 
-```{r cars}
-summary(cars)
+```{r}
+data <- getDataForSingleApp("https://play.google.com/store/apps/details?id=com.hulu.plus")
+
+data
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
 
-You can also embed plots, for example:
 
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
