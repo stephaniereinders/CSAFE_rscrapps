@@ -20,22 +20,25 @@ knitr::opts_chunk$set(
 library(rscrapps)
 ```
 
-This package was created so that my research group would have a simple way to gather information from the Google Play Store on available apps. The function getDataForApps allows the user to enter a search term. Then the function scrapes all of the apps that appear in the search resuls for that term on the Google Play Store. The function getDataForSingleApp scrapes the app page for a single app on the Google Play Store.
+This package was created so that my research group would have a simple way to gather information from the Google Play Store on available apps. The function getDataForApps allows the user to enter a search term and the number of apps to scrape. The function searches the Google Play Store for apps using the search term and then scrapes the Google Play Store app pages of the apps listed in the search results. The function getDataForSingleApp scrapes the Google Play Store app page for a single app.
 
 ---
 
 ## Scraping search results with getDataForApps
 
-The function getDataForApps searches the Google Play Store for the input search term, then scrapes the app pages for the apps in the search results. This function runs the function getDataForSingleApp for the apps in the search results.
+The function getDataForApps searches the Google Play Store for the input search term, then scrapes the app pages of the input number of apps in the search results. The function getDataForApps gathers the data for each app by running the function getDataForSingleApp.
 
-The inputs to getDataForApps are a search term, which can be a single word or multiple words, and the number of apps to scrape. The number of apps to scape can be "all" or a positive integer. If the number of apps to scrape num_apps is less than the total number of apps in the search results, the first num_apps in the search results will be scraped. The default number of apps to search is 2. 
+The inputs to getDataForApps are a search term *search_term* and the number of apps to scrape *num_apps*. 
+
+The input search_term can be a single word or multiple words.
+
+The number of apps to scape can be "all" or a positive integer. Scraping the app pages of all apps can take a while depending on the number of apps in the search results, so we won't show an example where the number of apps is "all" on this page. If the number of apps to scrape num_apps is less than the total number of apps in the search results, the first num_apps in the search results will be scraped. The default number of apps to search is 2. 
 
 ```{r}
-data <- getDataForApps("steganography", "all")
-head(data)
+getDataForApps("steganography")
 
-data <- getDataForApps("hidden data", 3)
-head(data)
+getDataForApps("hidden data", 5)
+
 ```
 
 
