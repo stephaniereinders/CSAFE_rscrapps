@@ -33,7 +33,7 @@ The main purpose of rscrapps is to allow a user to easily search the Google Play
 You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
+install.packages("devtools")
 devtools::install_github("stephaniereinders/rscrapps")
 ```
 
@@ -44,10 +44,7 @@ The function getDataForApps will search the Google Play Store for apps using the
 ```{r example}
 library(rscrapps)
 
-data <- getDataForApps(search_term = "steganography", num_apps =  5)
-
-data
-
+getDataForApps(search_term = "steganography", num_apps =  5)
 ```
 
 ## Example 2: Scrape the Google Play Store page of a single app
@@ -55,9 +52,7 @@ data
 If you want to scrape the Google Play Store app page of a specific app, you can use the function getDataForSingleApp. The input is the url to the app's page on the Google Play Store.
 
 ```{r}
-data <- getDataForSingleApp("https://play.google.com/store/apps/details?id=com.hulu.plus")
-
-data
+getDataForSingleApp("https://play.google.com/store/apps/details?id=com.hulu.plus")
 ```
 
 
