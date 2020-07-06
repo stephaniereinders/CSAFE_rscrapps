@@ -37,9 +37,9 @@ You can install the development version from [GitHub](https://github.com/) with:
 devtools::install_github("stephaniereinders/rscrapps")
 ```
 
-## Example
+## Example 1: Search for apps and scrape their Google Play Store pages 
 
-Suppose you want to gather information on steganography apps listed on the Google Play Store. You can run the function getDataForApps with inputs search_term = "steganography" and num_apps = 5. The function will first search the Google Play Store for apps using steganography as the search term. Then the function will scrape the Google Play Store pages of the first 5 apps listed in the search results. If you want to scrape the app pages of all of the apps in the search results, you can run the function with num_apps = "all" but be forwarned that the function can take a while to run depending on the number of apps in the search results.  
+The function getDataForApps will search the Google Play Store for apps using the input search_term and scrape data from those apps' Google Play Store pages. The function also allows you to specify the number of apps to scrape using the input num_apps. To scrape all of the apps listed in the search results, use num_apps = "all". 
 
 ```{r example}
 library(rscrapps)
@@ -50,6 +50,8 @@ data
 
 ```
 
+## Example 2: Scrape the Google Play Store page of a single app
+
 If you want to scrape the Google Play Store app page of a specific app, you can use the function getDataForSingleApp. The input is the url to the app's page on the Google Play Store.
 
 ```{r}
@@ -57,7 +59,6 @@ data <- getDataForSingleApp("https://play.google.com/store/apps/details?id=com.h
 
 data
 ```
-
 
 
 
