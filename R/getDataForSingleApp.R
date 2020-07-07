@@ -12,8 +12,7 @@
 #' @examples
 #' app_url <- "https://play.google.com/store/apps/details?id=com.dinaga.photosecret"
 #' getDataForSingleApp(app_url)
-
-getDataForSingleApp <- function(app_url){
+getDataForSingleApp <- function(app_url) {
 
   # Checks
   assert_that(
@@ -22,10 +21,10 @@ getDataForSingleApp <- function(app_url){
 
     # app_url must start with the string "https://play.google.com/store/apps/details?id="
     startsWith(app_url, "https://play.google.com/store/apps/details?id=")
-    )
+  )
 
   # get app name
-  name <- getDataForTag(app_url,"h1","class","AHFaub")
+  name <- getDataForTag(app_url, "h1", "class", "AHFaub")
 
   # get developer and category
   temp <- getDataForTag(app_url, "a", "class", "hrTbp R8zArc")
@@ -41,7 +40,7 @@ getDataForSingleApp <- function(app_url){
   # get rating
   rating <- as.numeric(getDataForTag(app_url, "div", "class", "BHMmbe"))
   # Not all apps have ratings. In this case, set the rating to NaN
-  if (length(rating)==0){
+  if (length(rating) == 0) {
     rating <- NaN
   }
 
@@ -50,7 +49,7 @@ getDataForSingleApp <- function(app_url){
   # If the app doesn't have any ratings, set the number of ratings to 0. If the
   # app has ratings remove " total" from after the number of ratings. E.g. the
   # value returned from the GPS might be "120 total" so we change it to "120"
-  if (length(num_rating)==0){
+  if (length(num_rating) == 0) {
     num_rating <- as.numeric(0)
   } else {
     num_rating <- gsub(" total", "", num_rating)
@@ -59,25 +58,25 @@ getDataForSingleApp <- function(app_url){
 
   # Get data from additional information section of page
   temp <- getDataForTag(app_url, "span", "class", "htlgb")
-  if (length(temp)==22){
-  updated <- temp[1]
-  size <- temp[3]
-  installs <- temp[5]
-  current_version <- temp[7]
-  requires_Android <- temp[9]
-  content_rating <- gsub("Learn More","",temp[11])
-  in_app_products <- temp[13]
-  permissions <- temp[15]
-  report <- temp[17]
-  offered_by <- temp[19]
-  developer_contact <- temp[21]
+  if (length(temp) == 22) {
+    updated <- temp[1]
+    size <- temp[3]
+    installs <- temp[5]
+    current_version <- temp[7]
+    requires_Android <- temp[9]
+    content_rating <- gsub("Learn More", "", temp[11])
+    in_app_products <- temp[13]
+    permissions <- temp[15]
+    report <- temp[17]
+    offered_by <- temp[19]
+    developer_contact <- temp[21]
   } else {
     updated <- temp[1]
     size <- temp[3]
     installs <- temp[5]
     current_version <- temp[7]
     requires_Android <- temp[9]
-    content_rating <- gsub("Learn More","",temp[11])
+    content_rating <- gsub("Learn More", "", temp[11])
     in_app_products <- "NA"
     permissions <- temp[13]
     report <- temp[15]
@@ -86,8 +85,7 @@ getDataForSingleApp <- function(app_url){
   }
 
   # Put in dataframe
-  data <- data.frame(name, developer, category, audience, description, rating, num_rating, updated, size, installs, current_version, requires_Android, content_rating, in_app_products, offered_by, developer_contact, stringsAsFactors=FALSE)
+  data <- data.frame(name, developer, category, audience, description, rating, num_rating, updated, size, installs, current_version, requires_Android, content_rating, in_app_products, offered_by, developer_contact, stringsAsFactors = FALSE)
 
   return(data)
-
 }

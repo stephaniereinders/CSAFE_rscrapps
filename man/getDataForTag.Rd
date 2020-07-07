@@ -23,6 +23,6 @@ Scrape an app page in the Google Play Store for information associated with a sp
 }
 \examples{
 app_url <- "https://play.google.com/store/apps/details?id=com.dinaga.photosecret"
-getDataForTag(app_url,"div","class","KmO8jd")
-getDataForTag(app_url, "a","class","hrTbp R8zArc")
+getDataForTag(app_url, "div", "class", "KmO8jd")
+getDataForTag(app_url, "a", "class", "hrTbp R8zArc")
 }

@@ -19,5 +19,5 @@ Scrape Google Play Store search results
 }
 \examples{
 data <- getDataForApps("steganography")
-data <- getDataForApps("hidden", num_apps=1)
+data <- getDataForApps("hidden", num_apps = 1)
 }

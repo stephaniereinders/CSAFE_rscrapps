@@ -17,9 +17,8 @@
 #'
 #' @examples
 #' app_url <- "https://play.google.com/store/apps/details?id=com.dinaga.photosecret"
-#' getDataForTag(app_url,"div","class","KmO8jd")
-#' getDataForTag(app_url, "a","class","hrTbp R8zArc")
-
+#' getDataForTag(app_url, "div", "class", "KmO8jd")
+#' getDataForTag(app_url, "a", "class", "hrTbp R8zArc")
 getDataForTag <- function(app_url, html_tag, html_attribute, html_attribute_value) {
 
   # Checks
@@ -34,7 +33,7 @@ getDataForTag <- function(app_url, html_tag, html_attribute, html_attribute_valu
     is.character(html_tag),
     is.character(html_attribute),
     is.character(html_attribute_value)
-    )
+  )
 
   # Combine html_tag, html_attribute, and html_attribute value into properly formatted search text
   search_text <- paste0("//", html_tag, "[contains(@", html_attribute, ",'", html_attribute_value, "')]")
@@ -42,10 +41,9 @@ getDataForTag <- function(app_url, html_tag, html_attribute, html_attribute_valu
   # Scrape the app page
   data <- app_url %>%
     read_html() %>%
-    html_nodes('body') %>%
+    html_nodes("body") %>%
     xml2::xml_find_all(search_text) %>%
     html_text()
 
   return(data)
-
 }
