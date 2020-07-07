@@ -5,7 +5,7 @@
 #' @import rvest
 #' @import xml2
 #' @import dplyr
-#' @import purrr
+#' @importFrom purrr map_dfr
 #'
 #' @export
 #' @return data
