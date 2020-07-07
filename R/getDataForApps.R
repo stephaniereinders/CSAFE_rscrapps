@@ -4,7 +4,8 @@
 #' @param num_apps number of apps to return data for
 #' @import rvest
 #' @import xml2
-#' @importFrom purrr map_dfr
+#' @import dplyr
+#' @import purrr
 #'
 #' @export
 #' @return data
