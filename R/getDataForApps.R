@@ -15,21 +15,21 @@
 #' data <- getDataForApps("hidden", num_apps = 1)
 getDataForApps <- function(search_term, num_apps = 2) {
 
-  # Checks
-  assert_that(
-    # search_term needs to be a character
-    is.character(search_term),
-
-    # search_term needs to be non-empty
-    (search_term != ""),
-
-    # num_apps needs to be a positive integer or "all"
-    if (is.numeric(num_apps)) {
-      num_apps %% 1 == 0 & num_apps > 0
-    } else {
-      tolower(num_apps) == "all"
-    }
-  )
+  # # Checks
+  # assert_that(
+  #   # search_term needs to be a character
+  #   is.character(search_term),
+  #
+  #   # search_term needs to be non-empty
+  #   (search_term != ""),
+  #
+  #   # num_apps needs to be a positive integer or "all"
+  #   if (is.numeric(num_apps)) {
+  #     num_apps %% 1 == 0 & num_apps > 0
+  #   } else {
+  #     tolower(num_apps) == "all"
+  #   }
+  # )
 
   # replace any spaces in search_term with %20 to match GPS's formatting
   search_term <- gsub(" ", "%20", search_term)
