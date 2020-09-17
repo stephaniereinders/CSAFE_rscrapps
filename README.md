@@ -11,9 +11,7 @@ coverage](https://codecov.io/gh/stephaniereinders/rscrapps/branch/master/graph/b
 status](https://travis-ci.com/stephaniereinders/rscrapps.svg?branch=master)](https://travis-ci.com/stephaniereinders/rscrapps)
 <!-- badges: end -->
 
-The main purpose of rscrapps is to allow a user to easily search the
-Google Play Store for apps and scrape information from those apps’
-pages.
+Rscrapps allows a user to search the Google Play Store for apps and scrape information from those apps’ pages.
 
 ## Installation
 
